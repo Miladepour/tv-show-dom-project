@@ -1,5 +1,8 @@
 //You can edit ALL of the code here
 const allEpisodes = getAllEpisodes();
+const rootEl = document.getElementById("container")
+const selectEl = document.getElementById("selectEl")
+const selector = document.getElementById("selector")
 const counter = document.getElementById("episodeCounter")
 counter.innerHTML = `Total episode: ${allEpisodes.length}`
 
@@ -10,7 +13,6 @@ function setup() {
 
 //Display all the episode in cards
 function createEpisodeCards(listOfEpisodes) {
-  const rootEl = document.getElementById("container")
   rootEl.innerHTML = ""
   
   const episodeList = document.createElement("ul")
@@ -34,6 +36,8 @@ function createEpisodeCards(listOfEpisodes) {
   const formattedSeason = (""+season).padStart(2, "0") 
   const formattedNumber = (""+number).padStart(2, "0")
   const episodeCorrectFormat = `Season: ${formattedSeason} - Episode: ${formattedNumber}`
+  const episodeCorrectFormatV2 = `S${formattedSeason}E${formattedNumber}`
+
     
   const episodeFormatH3 = document.createElement('h3')
   episodeFormatH3.className = "epi-format"
@@ -50,6 +54,11 @@ function createEpisodeCards(listOfEpisodes) {
   episodeSummary.className = "summary"
   episodeSummary.innerHTML = `Short Description:${summary}...`
 
+  
+  const selectionOption = document.createElement("option")
+  selectionOption.innerHTML= `${episodeCorrectFormatV2} - ${name}`
+
+
 
   const showDuration = document.createElement('h5')
   showDuration.innerHTML = `Time: ${duration}m`
@@ -60,6 +69,8 @@ function createEpisodeCards(listOfEpisodes) {
   listMaker.appendChild(episodeSummary)
   listMaker.appendChild(showDuration)
   episodeList.appendChild(listMaker)
+  selector.appendChild(selectionOption)
+  selectEl.appendChild(selector)  
  }) 
     
   rootEl.appendChild(episodeList)
@@ -80,6 +91,5 @@ searchBar.addEventListener("keyup", (e)=>{
 createEpisodeCards(filteredEpisodes)
 counter.innerHTML = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`
 });
-
 
 window.onload = setup;

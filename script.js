@@ -33,7 +33,9 @@ function createEpisodeCards(listOfEpisodes) {
   const episodeCorrectFormat = `Season: ${formattedSeason} - Episode: ${formattedNumber}`
     
   const episodeFormatH3 = document.createElement('h3')
+  episodeFormatH3.className = "epi-format"
   episodeFormatH3.innerText = episodeCorrectFormat
+  
     
   const episodeImg = document.createElement("img")
   episodeImg.style.height = "167px"
@@ -43,7 +45,7 @@ function createEpisodeCards(listOfEpisodes) {
 
   const episodeSummary = document.createElement('div')
   episodeSummary.className = "summary"
-  episodeSummary.innerHTML = `${summary}.....`
+  episodeSummary.innerHTML = `Short Description:${summary}...`
 
   listMaker.appendChild(nameEl)
   listMaker.appendChild(episodeImg)

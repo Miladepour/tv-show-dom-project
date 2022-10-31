@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
+
+/* font-family: 'Rubik', sans-serif; */
+
+:root{
+--Royalblue: #3f3f3e;
+--white: #e3e3e3;
+--darkGrey: #1c1c1c;
+--fyellow: #fcad00
+}
+body{
+font-family: 'Rubik', sans-serif;
+background-color: var(--darkGrey);
+color: antiquewhite;
+
+
+}
+#container{
+    display: flex; 
+}
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+}
+li{
+    flex: auto ;
+    margin: 10px;
+    width: 280px;
+    padding: 20px;
+    background: var(--Royalblue);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+.epi-format{
+    color: var(--fyellow);
+    font-size: 15px;
+}
+.summary{
+ font-size: 15px; 
+}
+.episode-name{
+    border-bottom: var(--fyellow) solid 2px;
+}
+
+

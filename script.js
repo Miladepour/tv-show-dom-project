@@ -1,5 +1,7 @@
 //You can edit ALL of the code here
 const allEpisodes = getAllEpisodes();
+const counter = document.getElementById("episodeCounter")
+counter.innerHTML = `Total episode: ${allEpisodes.length}`
 
 function setup() {
   // makePageForEpisodes(allEpisodes);
@@ -72,9 +74,11 @@ searchBar.addEventListener("keyup", (e)=>{
   return (
   episode.name.toLowerCase().includes(searchString) ||
   episode.summary.toLowerCase().includes(searchString)
+  
   );
 })
 createEpisodeCards(filteredEpisodes)
+counter.innerHTML = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`
 });
 
 

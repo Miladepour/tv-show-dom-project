@@ -1,12 +1,12 @@
 //You can edit ALL of the code here
+const allEpisodes = getAllEpisodes();
+
 function setup() {
-  const allEpisodes = getAllEpisodes();
   // makePageForEpisodes(allEpisodes);
   createEpisodeCards(allEpisodes)
-
 }
 
-
+//Display all the episode in cards
 function createEpisodeCards(listOfEpisodes) {
   const rootEl = document.getElementById("container")
   rootEl.innerHTML = ""
@@ -62,5 +62,20 @@ function createEpisodeCards(listOfEpisodes) {
     
   rootEl.appendChild(episodeList)
 }
+
+//Search functionality
+const searchBar = document.getElementById("searchBar")
+
+searchBar.addEventListener("keyup", (e)=>{
+ const searchString = e.target.value.toLowerCase();
+ const filteredEpisodes = allEpisodes.filter(episode => {
+  return (
+  episode.name.toLowerCase().includes(searchString) ||
+  episode.summary.toLowerCase().includes(searchString)
+  );
+})
+createEpisodeCards(filteredEpisodes)
+});
+
 
 window.onload = setup;

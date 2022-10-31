@@ -75,4 +75,10 @@ footer{
     display: flex;
     justify-content: center;
 }
-
+#searchBar{
+padding: 10px;
+font-family: 'Rubik', sans-serif;
+font-size: 20px;
+font-weight: 500;
+color: var(--Royalblue);
+}

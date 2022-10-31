@@ -21,7 +21,8 @@ function createEpisodeCards(listOfEpisodes) {
     season = episode.season,
     number = episode.number,
     summary = episode.summary?.substring(0,200) || "",
-    image = episode.image?.medium || "Images/no_image.jpg"
+    image = episode.image?.medium || "Images/no_image.jpg",
+    duration = episode.runtime
 
 
   const nameEl = document.createElement('h2') 
@@ -47,10 +48,15 @@ function createEpisodeCards(listOfEpisodes) {
   episodeSummary.className = "summary"
   episodeSummary.innerHTML = `Short Description:${summary}...`
 
+
+  const showDuration = document.createElement('h5')
+  showDuration.innerHTML = `Time: ${duration}m`
+
   listMaker.appendChild(nameEl)
   listMaker.appendChild(episodeImg)
   listMaker.appendChild(episodeFormatH3)
   listMaker.appendChild(episodeSummary)
+  listMaker.appendChild(showDuration)
   episodeList.appendChild(listMaker)
  }) 
     

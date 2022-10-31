@@ -8,13 +8,36 @@
 --darkGrey: #1c1c1c;
 --fyellow: #fcad00
 }
+/* Main  */
 body{
 font-family: 'Rubik', sans-serif;
 background-color: var(--darkGrey);
 color: antiquewhite;
-
-
+margin: 0;
+padding: 0;
 }
+a {
+    color: var(--fyellow);
+  }
+/* Header */
+header{
+    display: flex;
+    align-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+}
+.logo{
+    font-size: 50px;
+    margin: 0;
+}
+#logo-one-split{
+    color: var(--fyellow);
+}
+#logo-two-split{
+    color: var(--fyellow);
+}
+/* Movie Card */
 #container{
     display: flex; 
 }
@@ -45,5 +68,11 @@ li{
 .episode-name{
     border-bottom: var(--fyellow) solid 2px;
 }
-
+/* Footer */
+footer{
+    background-color: var(--fyellow);
+    color: var(--darkGrey);
+    display: flex;
+    justify-content: center;
+}
 

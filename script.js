@@ -56,9 +56,16 @@ function createEpisodeCards(listOfEpisodes) {
 
   
   const selectionOption = document.createElement("option")
+  const targetSelect = selector.value;
   selectionOption.innerHTML= `${episodeCorrectFormatV2} - ${name}`
+  selectionOption.addEventListener("click",filterEpisodeBySelect)
 
-
+  function filterEpisodeBySelect() {
+    setup()
+    const filteredEpisodes = allEpisodes.filter(episode => {
+      return episode.name.includes(selector.value.substring(9))
+    }); createEpisodeCards(filteredEpisodes)
+  }
 
   const showDuration = document.createElement('h5')
   showDuration.innerHTML = `Time: ${duration}m`

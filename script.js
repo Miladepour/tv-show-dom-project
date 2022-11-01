@@ -1,3 +1,7 @@
+//Bugs need to fix :
+//line 69-76 (in some brower it doesn't work)
+//line 120 (reset the option list)
+
 //You can edit ALL of the code here
 const allEpisodes = getAllEpisodes();
 const rootEl = document.getElementById("container")
@@ -111,7 +115,10 @@ counter.innerHTML = `Displaying ${filteredEpisodes.length}/${allEpisodes.length}
 const backBtn = document.createElement("button")
 backBtn.className = "backButton"
 backBtn.innerText = "Show all episodes"
-backBtn.addEventListener("click",setup)
+backBtn.addEventListener("click",()=>{
+  setup()
+  // need to write more code to update the option list
+})
 headerEl.appendChild(backBtn)
 
 //start window

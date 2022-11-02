@@ -1,7 +1,3 @@
-//Bugs need to fix :
-//line 69-76 (in some brower it doesn't work)
-//line 120 (reset the option list)
-
 //You can edit ALL of the code here
 const allEpisodes = getAllEpisodes();
 const rootEl = document.getElementById("container")
@@ -15,11 +11,33 @@ const counter = document.getElementById("episodeCounter")
 function setup() {
   // makePageForEpisodes(allEpisodes);
   createEpisodeCards(allEpisodes)
+  optionCreator(allEpisodes)
   //restarting value of search input
   searchBar.value = ""
   //restarting Total episode text
   counter.innerHTML = `Total episode: ${allEpisodes.length}`
 }
+// episode option creator
+  function optionCreator (listOfEpisodes) {
+    listOfEpisodes.forEach(episode => { 
+      const selectionOption = document.createElement("option")
+      const formattedSeason = (""+episode.season).padStart(2, "0") 
+      const formattedNumber = (""+episode.number).padStart(2, "0")
+      const episodeCorrectFormatV2 = `S${formattedSeason}E${formattedNumber}`
+      selectionOption.innerHTML= `${episodeCorrectFormatV2} - ${episode.name}`
+      selector.appendChild(selectionOption)
+    })
+    //add event listener to selector
+    selector.addEventListener("change",filterEpisodeBySelect)
+    function filterEpisodeBySelect() {
+      const filteredEpisodes = allEpisodes.filter(episode => {
+        return episode.name.includes(selector.value.substring(9))
+      }); createEpisodeCards(filteredEpisodes)
+      //change number of displaying episode
+      counter.innerHTML = `Displaying ${filteredEpisodes.length}`
+    }
+  }
+
 
 //Display all the episode in cards
 function createEpisodeCards(listOfEpisodes) {
@@ -34,8 +52,8 @@ function createEpisodeCards(listOfEpisodes) {
     name = episode.name,
     season = episode.season,
     number = episode.number,
-    summary = episode.summary?.substring(0,200) || "",
-    image = episode.image?.medium || "Images/no_image.jpg",
+    summary = episode.summary.substring(0,200) || "",
+    image = episode.image.medium || "Images/no_image.jpg",
     duration = episode.runtime
 
 //Episode seasons and numbers
@@ -64,21 +82,6 @@ function createEpisodeCards(listOfEpisodes) {
   episodeSummary.className = "summary"
   episodeSummary.innerHTML = `Short Description:${summary}...`
 
-  //Episode select option
-  const selectionOption = document.createElement("option")
-  const targetSelect = selector.value;
-  selectionOption.innerHTML= `${episodeCorrectFormatV2} - ${name}`
-
-//** BUGS!! line 69-76 (in some brower it doesn't work)
-  selectionOption.addEventListener("click",filterEpisodeBySelect)
-  function filterEpisodeBySelect() {
-    setup()
-    const filteredEpisodes = allEpisodes.filter(episode => {
-      return episode.name.includes(selector.value.substring(9))
-    }); createEpisodeCards(filteredEpisodes)
-    //change number of displaying episode
-    counter.innerHTML = `Displaying ${filteredEpisodes.length}`
-  }
 // episode duration (improvment needed)
   const showDuration = document.createElement('h5')
   showDuration.innerHTML = `Time: ${duration}m`
@@ -90,7 +93,7 @@ function createEpisodeCards(listOfEpisodes) {
   listMaker.appendChild(episodeSummary)
   listMaker.appendChild(showDuration)
   episodeList.appendChild(listMaker)
-  selector.appendChild(selectionOption)
+  // selector.appendChild(selectionOption)
   selectEl.appendChild(selector)  
  }) 
     

@@ -67,6 +67,7 @@ li{
 }
 .episode-name{
     border-bottom: var(--fyellow) solid 2px;
+    font-size: 18px; 
 }
 .backButton{
     margin-top:10px ;

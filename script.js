@@ -36,12 +36,19 @@ function optionCreator (listOfEpisodes) {
   })
   //add event listener to selector
   selector.addEventListener("change",filterEpisodeBySelect)
+  //BUGS - All episodes not working
   function filterEpisodeBySelect() {
-    const filteredEpisodes = allEpisodes.filter(episode => {
-      return episode.name.includes(selector.value.substring(9))
-    }); createEpisodeCards(filteredEpisodes)
+    let selectorValue = selector.value
+    let anotherValue = selector.value.substring(9)
+    let filteredEpisodes = allEpisodes.filter(episode => 
+      selectorValue.includes(episode.formattedNumber) 
+    ); 
+    if (!anotherValue) {
+      filteredEpisodes = allEpisodes
+    }
+    createEpisodeCards(filteredEpisodes)
     //change number of displaying episode
-    counter.innerHTML = `Displaying ${filteredEpisodes.length}`
+    counter.innerHTML = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`
   }
 }
 
@@ -90,7 +97,6 @@ function createEpisodeCards(listOfEpisodes) {
     listMaker.appendChild(episodeSummary)
     listMaker.appendChild(showDuration)
     episodeList.appendChild(listMaker)
-    // selector.appendChild(selectionOption)
     selectEl.appendChild(selector)  
  }) 
     
@@ -117,6 +123,7 @@ backBtn.className = "backButton"
 backBtn.innerText = "Show all episodes"
 backBtn.addEventListener("click",()=>{
   setup()
+  selector.value = ""
   // need to write more code to update the option list
 })
 headerEl.appendChild(backBtn)

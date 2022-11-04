@@ -39,12 +39,14 @@ function optionCreator (listOfEpisodes) {
   //BUGS - All episodes not working
   function filterEpisodeBySelect() {
     let selectorValue = selector.value
-    let anotherValue = selector.value.substring(9)
-    let filteredEpisodes = allEpisodes.filter(episode => 
-      selectorValue.includes(episode.formattedNumber) 
-    ); 
-    if (!anotherValue) {
+    let filteredEpisodes;
+    
+    if (selectorValue === "all-episodes") {
       filteredEpisodes = allEpisodes
+    } else {
+      filteredEpisodes = allEpisodes.filter(episode => 
+        selectorValue.includes(episode.formattedNumber) 
+      ); 
     }
     createEpisodeCards(filteredEpisodes)
     //change number of displaying episode
@@ -105,7 +107,7 @@ function createEpisodeCards(listOfEpisodes) {
 
 //Search functionality
 searchBar.addEventListener("keyup", (e)=>{
-  selector.value = "" 
+  selector.value = "all-episodes" 
  const searchString = e.target.value.toLowerCase();
  const filteredEpisodes = allEpisodes.filter(episode => {
   return (
@@ -124,7 +126,7 @@ backBtn.className = "backButton"
 backBtn.innerText = "Show all episodes"
 backBtn.addEventListener("click",()=>{
   setup()
-  selector.value = ""
+  selector.value = "all-episodes"
   // need to write more code to update the option list
 })
 headerEl.appendChild(backBtn)

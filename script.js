@@ -105,6 +105,7 @@ function createEpisodeCards(listOfEpisodes) {
 
 //Search functionality
 searchBar.addEventListener("keyup", (e)=>{
+  selector.value = "" 
  const searchString = e.target.value.toLowerCase();
  const filteredEpisodes = allEpisodes.filter(episode => {
   return (

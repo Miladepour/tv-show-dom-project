@@ -1,20 +1,34 @@
-//You can edit ALL of the code here
-const allEpisodes = getAllEpisodes().map(episode =>{
-  const formattedSeason = (episode.season.toString()).padStart(2, "0") 
-  const formattedNumber = (episode.number.toString()).padStart(2, "0")
-  const episodeCorrectFormatV2 = `S${formattedSeason}E${formattedNumber}`
-
-  return {
-    ...episode,
-    formattedNumber: episodeCorrectFormatV2
-  }
-});
+// //You can edit ALL of the code here
 const rootEl = document.getElementById("container")
 const selectEl = document.getElementById("selectEl")
 const headerEl = document.getElementById("headerEl")
 const searchBar = document.getElementById("searchBar")
 const selector = document.getElementById("selector")
 const counter = document.getElementById("episodeCounter")
+allEpisodes = ""
+
+function fetchEpisodeLive() {
+fetch('https://api.tvmaze.com/shows/82/episodes')
+.then((res) => {
+  if(res.status === 200) {
+    return res.json()
+  } else {
+    throw new Error('Not Found ...')
+  }
+  })
+.then(data => {
+allEpisodes = data.map((episode)=> {
+  const formattedSeason = (episode.season.toString()).padStart(2, "0") 
+  const formattedNumber = (episode.number.toString()).padStart(2, "0")
+  const episodeCorrectFormatV2 = `S${formattedSeason}E${formattedNumber}`
+  return {...episode, formattedNumber : episodeCorrectFormatV2}
+})
+setup()
+})
+.catch(error => rootEl.innerHTML =`“Oops!” Something went wrong please contact MovoApp technical team`)
+}
+// call fetchEpisodeLive to get the API and change the allEpisodes
+fetchEpisodeLive()
 
 
 function setup() {
@@ -110,11 +124,10 @@ searchBar.addEventListener("keyup", (e)=>{
   selector.value = "all-episodes" 
  const searchString = e.target.value.toLowerCase();
  const filteredEpisodes = allEpisodes.filter(episode => {
-  return (
-  episode.name.toLowerCase().includes(searchString) ||
-  episode.summary.toLowerCase().includes(searchString)
-  
-  );
+    return (
+      episode.name.toLowerCase().includes(searchString) ||
+      episode.summary.toLowerCase().includes(searchString)
+      )
 })
 createEpisodeCards(filteredEpisodes)
 counter.innerHTML = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`

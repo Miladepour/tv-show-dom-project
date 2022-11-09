@@ -125,7 +125,9 @@ function createEpisodeCards(listOfEpisodes) {
     episodeImg.style.width = "298px"
     episodeImg.src = image
     episodeImg.alt = `${name} - ${episode.formattedNumber}`
-
+    episodeImg.addEventListener("click",function(){
+      window.location.assign(episode.url);
+      });
     //Episode summery
     const episodeSummary = document.createElement('div')
     episodeSummary.className = "summary"

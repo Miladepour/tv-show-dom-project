@@ -6,7 +6,8 @@
 --Royalblue: #3f3f3e;
 --white: #e3e3e3;
 --darkGrey: #1c1c1c;
---fyellow: #fcad00
+--fyellow: #fcad00;
+--another: #00ffd5;
 }
 /* Main  */
 body{
@@ -87,6 +88,13 @@ li{
    border-radius: 15px;
    color: var(--Royalblue); 
    }
+   #showSelector{
+    padding: 5px 5px 5px 5px;  
+    font-family: 'Rubik', sans-serif;
+    background-color: var(--Royalblue);
+    border-radius: 15px;
+    color: var(--fyellow); 
+    }
 /* Footer */
 footer{
     background-color: var(--fyellow);
@@ -100,4 +108,12 @@ font-family: 'Rubik', sans-serif;
 font-size: 20px;
 font-weight: 500;
 color: var(--Royalblue);
+}
+#errorMasg{
+    display: none;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: var(--fyellow);
+    text-align: center;
 }

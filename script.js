@@ -4,13 +4,17 @@ const selectEl = document.getElementById("selectEl")
 const headerEl = document.getElementById("headerEl")
 const searchBar = document.getElementById("searchBar")
 const selector = document.getElementById("selector")
+const showSelector = document.getElementById("showSelector")
+const errorMasg = document.getElementById("errorMasg")
 const counter = document.getElementById("episodeCounter")
 allEpisodes = ""
+allShows = getAllShows().sort((a, b) => a.name.localeCompare(b.name))
 
-function fetchEpisodeLive() {
-fetch('https://api.tvmaze.com/shows/82/episodes')
+function fetchEpisodeLive(SHOW_ID) {
+fetch(`https://api.tvmaze.com/shows/${SHOW_ID}/episodes`)
 .then((res) => {
   if(res.status === 200) {
+    errorMasg.style.display = "none"
     return res.json()
   } else {
     throw new Error('Not Found ...')
@@ -25,15 +29,18 @@ allEpisodes = data.map((episode)=> {
 })
 setup()
 })
-.catch(error => rootEl.innerHTML =`“Oops!” Something went wrong please contact MovoApp technical team`)
+.catch(error => errorMasg.style.display = "block")
 }
 // call fetchEpisodeLive to get the API and change the allEpisodes
-fetchEpisodeLive()
+fetchEpisodeLive(167)
 
 
 function setup() {
+
   // makePageForEpisodes(allEpisodes);
   createEpisodeCards(allEpisodes)
+  //optionCreator(allEpisodes)
+  showCreator(allShows)
   optionCreator(allEpisodes)
   //restarting value of search input
   searchBar.value = ""
@@ -41,18 +48,22 @@ function setup() {
   counter.innerHTML = `Total episodes: ${allEpisodes.length}`
 }
 
-// episode option creator
-function optionCreator (listOfEpisodes) {
+
+//episode option creator
+function optionCreator(listOfEpisodes) {
+  selector.innerHTML = ""
   listOfEpisodes.forEach(episode => { 
     const selectionOption = document.createElement("option")
     selectionOption.innerHTML= `${episode.formattedNumber} - ${episode.name}`
     selector.appendChild(selectionOption)
   })
+}
   //add event listener to selector
   selector.addEventListener("change",filterEpisodeBySelect)
-  //BUGS - All episodes not working
+  // function of filterEpisodeBySelect
   function filterEpisodeBySelect() {
     let selectorValue = selector.value
+    console.log(selectorValue);
     let filteredEpisodes;
     
     if (selectorValue === "all-episodes") {
@@ -66,7 +77,24 @@ function optionCreator (listOfEpisodes) {
     //change number of displaying episode
     counter.innerHTML = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`
   }
+
+function showCreator(listOfShow) {
+  listOfShow.forEach(episode => { 
+    const showSelection = document.createElement("option")
+    showSelection.innerHTML= `${episode.name}`
+    showSelection.value = episode.id
+    showSelector.appendChild(showSelection)
+  })
 }
+  //add event listener to show selector
+  showSelector.addEventListener("change",filterShowsBySelect)
+  // function of filterEpisodeBySelect
+  function filterShowsBySelect() {
+    let showValue = showSelector.value
+    console.log(showValue);
+    fetchEpisodeLive(showValue)
+  }
+
 
 
 //Display all the episode in cards
@@ -136,10 +164,11 @@ counter.innerHTML = `Displaying ${filteredEpisodes.length}/${allEpisodes.length}
 //Show all episodes button
 const backBtn = document.createElement("button")
 backBtn.className = "backButton"
-backBtn.innerText = "Show all episodes"
+backBtn.innerText = "Clear my search"
 backBtn.addEventListener("click",()=>{
   setup()
   selector.value = "all-episodes"
+  showSelector.value = "all-shows"
   // need to write more code to update the option list
 })
 headerEl.appendChild(backBtn)

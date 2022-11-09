@@ -22,12 +22,16 @@
       <select name="selector" id="selector">
         <option value="all-episodes">All Episodes</option>
       </select>
+      <select name="showSelector" id="showSelector">
+        <option value="all-shows">All Shows</option>
+      </select>
 
     </div>
   </header>
   <main>
     <div id="container" class="container-style">
     </div>
+    <div id="errorMasg">“Oops!” Something went wrong please contact MovoApp technical team, try to search for another shows</div>
   </main>
   <footer>
     <p>This project create by Milad Ebrahimpour/NW5 - CodeYourFuture 2022</p>
@@ -35,7 +39,7 @@
 
   <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
   <script src="episodes.js"></script>
-
+  <script src="./shows.js"></script>
   <!-- Loads YOUR javascript code -->
   <script src="script.js"></script>
 </body>

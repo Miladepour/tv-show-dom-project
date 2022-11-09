@@ -65,6 +65,7 @@ li:hover {
     border-bottom-left-radius: 10px;
     border-left: 8px solid var(--fyellow);
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    transform: scale(1.03);
 }
 .epi-format{
     color: var(--fyellow);

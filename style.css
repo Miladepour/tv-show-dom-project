@@ -59,6 +59,13 @@ li{
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
+li:hover {
+    transition: 0.5s;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: 8px solid var(--fyellow);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
 .epi-format{
     color: var(--fyellow);
     font-size: 15px;

@@ -72,11 +72,20 @@ li:hover {
     font-size: 15px;
 }
 .summary{
- font-size: 15px; 
+ font-size: 17px; 
 }
 .episode-name{
     border-bottom: var(--fyellow) solid 2px;
     font-size: 18px; 
+}
+.showRate{
+    color: #fcad00;
+}
+.showStatus, .showGenres, .showRunTime {
+font-size: 15px;
+border-bottom: #e3e3e333 solid 2px;
+padding-top: 10px;
+padding-bottom: 5px;
 }
 .backButton{
     margin-top:10px ;

@@ -27,25 +27,24 @@ allEpisodes = data.map((episode)=> {
   const episodeCorrectFormatV2 = `S${formattedSeason}E${formattedNumber}`
   return {...episode, formattedNumber : episodeCorrectFormatV2}
 })
-setup()
+createEpisodeCards(allEpisodes)
+optionCreator(allEpisodes)
 })
 .catch(error => errorMasg.style.display = "block")
 }
 // call fetchEpisodeLive to get the API and change the allEpisodes
-fetchEpisodeLive(167)
+//fetchEpisodeLive(167)
 
 
 function setup() {
-
-  // makePageForEpisodes(allEpisodes);
-  createEpisodeCards(allEpisodes)
-  //optionCreator(allEpisodes)
+  showLoad(allShows)
+  // createEpisodeCards(allEpisodes)
   showCreator(allShows)
   optionCreator(allEpisodes)
   //restarting value of search input
   searchBar.value = ""
   //restarting Total episode text
-  counter.innerHTML = `Total episodes: ${allEpisodes.length}`
+  counter.innerHTML = `Total Shows: ${allShows.length}`
 }
 
 
@@ -79,10 +78,10 @@ function optionCreator(listOfEpisodes) {
   }
 
 function showCreator(listOfShow) {
-  listOfShow.forEach(episode => { 
+  listOfShow.forEach(shows => { 
     const showSelection = document.createElement("option")
-    showSelection.innerHTML= `${episode.name}`
-    showSelection.value = episode.id
+    showSelection.innerHTML= `${shows.name}`
+    showSelection.value = shows.id
     showSelector.appendChild(showSelection)
   })
 }
@@ -93,6 +92,72 @@ function showCreator(listOfShow) {
     let showValue = showSelector.value
     console.log(showValue);
     fetchEpisodeLive(showValue)
+    if(showValue === "all-shows"){
+      setup()
+    }
+  }
+
+//Display all the shows in cards
+  function showLoad(listOfShow) {
+    rootEl.innerHTML = ""
+    const episodeList = document.createElement("ul")
+      
+    listOfShow.forEach(shows => {
+      const listMaker = document.createElement('li')
+      listMaker.className = "episode-card"
+      const 
+        name = shows.name,
+        summary = shows.summary?.substring(0,200) || "",
+        image = shows.image?.medium || "Images/no_image.jpg"
+      //Episode seasons and numbers
+      const nameEl = document.createElement('h2') 
+      nameEl.className = "episode-name"
+      nameEl.innerText = `${name}`
+  
+      //Episode image 
+      const showImg = document.createElement("img")
+      showImg.style.height = "167px"
+      showImg.style.width = "298px"
+      showImg.src = image
+      showImg.alt = `${name}`
+
+      //Episode summery
+      const showSummary = document.createElement('div')
+      showSummary.className = "summary"
+      showSummary.innerHTML = `Short Description:${summary}...`
+  
+      // Show rate
+      const showRate = document.createElement('h5') 
+      showRate.className = "showRate"
+      showRate.innerHTML = `Rate: ${shows.rating.average}`
+      
+      // Status 
+      const showStatus = document.createElement('div') 
+      showStatus.className = "showStatus"
+      showStatus.innerHTML = `Status: ${shows.status}`
+
+      // Genres
+      const showGenres = document.createElement('div') 
+      showGenres.className = "showGenres"
+      showGenres.innerHTML = `Genres: ${shows.genres}`
+
+      // Runtime
+      const showRunTime = document.createElement('div') 
+      showRunTime.className = "showRunTime"
+      showRunTime.innerHTML = `Runtime: ${shows.runtime}`
+      //append list
+      listMaker.appendChild(nameEl)
+      listMaker.appendChild(showImg)
+      listMaker.appendChild(showRate)
+      listMaker.appendChild(showSummary)
+      listMaker.appendChild(showStatus)
+      listMaker.appendChild(showGenres)
+      listMaker.appendChild(showRunTime)
+      episodeList.appendChild(listMaker)
+      selectEl.appendChild(selector)  
+   }) 
+      
+    rootEl.appendChild(episodeList)
   }
 
 
@@ -100,7 +165,6 @@ function showCreator(listOfShow) {
 //Display all the episode in cards
 function createEpisodeCards(listOfEpisodes) {
   rootEl.innerHTML = ""
-  
   const episodeList = document.createElement("ul")
     
   listOfEpisodes.forEach(episode => {
@@ -147,12 +211,15 @@ function createEpisodeCards(listOfEpisodes) {
  }) 
     
   rootEl.appendChild(episodeList)
+    counter.innerHTML = `Displaying ${allEpisodes.length} episodes`
+    
 }
 
 //Search functionality
 searchBar.addEventListener("keyup", (e)=>{
   selector.value = "all-episodes" 
  const searchString = e.target.value.toLowerCase();
+ console.log(searchString);
  const filteredEpisodes = allEpisodes.filter(episode => {
     return (
       episode.name.toLowerCase().includes(searchString) ||
@@ -160,6 +227,7 @@ searchBar.addEventListener("keyup", (e)=>{
       )
 })
 createEpisodeCards(filteredEpisodes)
+
 counter.innerHTML = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`
 });
 

@@ -18,7 +18,7 @@ margin: 0;
 padding: 0;
 }
 a {
-    color: var(--fyellow);
+    color: var(--darkGrey);
   }
 /* Header */
 header{
@@ -26,7 +26,12 @@ header{
     align-content: space-around;
     flex-wrap: wrap;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    background-color: #000000;
 }
 .logo{
     font-size: 50px;
@@ -88,7 +93,6 @@ padding-top: 10px;
 padding-bottom: 5px;
 }
 .backButton{
-    margin-top:10px ;
     padding: 5px 5px 5px 5px; 
     border: none;
     font-size: 15px;
@@ -99,17 +103,17 @@ padding-bottom: 5px;
     border-radius: 5px;
    }
    #selector{
-   padding: 5px 5px 5px 5px;  
+   padding: 5px;
    font-family: 'Rubik', sans-serif;
    background-color: var(--fyellow);
-   border-radius: 15px;
+   border-radius: 5px;
    color: var(--Royalblue); 
    }
    #showSelector{
-    padding: 5px 5px 5px 5px;  
+    padding: 5px;
     font-family: 'Rubik', sans-serif;
     background-color: var(--Royalblue);
-    border-radius: 15px;
+    border-radius: 5px;
     color: var(--fyellow); 
     }
 /* Footer */
@@ -120,10 +124,10 @@ footer{
     justify-content: center;
 }
 #searchBar{
-padding: 10px;
+padding: 5px;
 font-family: 'Rubik', sans-serif;
-font-size: 20px;
-font-weight: 500;
+font-size: 15px;
+font-weight: 300;
 color: var(--Royalblue);
 }
 #errorMasg{

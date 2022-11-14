@@ -10,6 +10,18 @@ const counter = document.getElementById("episodeCounter")
 allEpisodes = ""
 allShows = getAllShows().sort((a, b) => a.name.localeCompare(b.name))
 
+//Show all episodes button
+const backBtn = document.createElement("button")
+backBtn.className = "backButton"
+backBtn.innerText = "Back To All Shows"
+backBtn.addEventListener("click",()=>{
+  setup()
+  selector.value = "all-episodes"
+  showSelector.value = "all-shows"
+  // need to write more code to update the option list
+})
+headerEl.appendChild(backBtn)
+
 function fetchEpisodeLive(SHOW_ID) {
 fetch(`https://api.tvmaze.com/shows/${SHOW_ID}/episodes`)
 .then((res) => {
@@ -99,6 +111,10 @@ function showCreator(listOfShow) {
 
 //Display all the shows in cards
   function showLoad(listOfShow) {
+    // when the page loads the episode selector will be disable / shows list will be enable / button will be disappeare
+    selector.style.display = "none"
+    showSelector.style.display = ""
+    backBtn.style.display = "none"
     rootEl.innerHTML = ""
     const episodeList = document.createElement("ul")
       
@@ -164,6 +180,10 @@ function showCreator(listOfShow) {
 
 //Display all the episode in cards
 function createEpisodeCards(listOfEpisodes) {
+      // when the shows will be selected the episode selector will be enable / shows list will be disable / button will be appeare
+  selector.style.display = ""
+  showSelector.style.display = "none"
+  backBtn.style.display = ""
   rootEl.innerHTML = ""
   const episodeList = document.createElement("ul")
     
@@ -231,17 +251,6 @@ createEpisodeCards(filteredEpisodes)
 counter.innerHTML = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`
 });
 
-//Show all episodes button
-const backBtn = document.createElement("button")
-backBtn.className = "backButton"
-backBtn.innerText = "Clear my search"
-backBtn.addEventListener("click",()=>{
-  setup()
-  selector.value = "all-episodes"
-  showSelector.value = "all-shows"
-  // need to write more code to update the option list
-})
-headerEl.appendChild(backBtn)
 
 //start window
 window.onload = setup;

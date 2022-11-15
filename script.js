@@ -26,7 +26,7 @@ function fetchEpisodeLive(SHOW_ID) {
 fetch(`https://api.tvmaze.com/shows/${SHOW_ID}/episodes`)
 .then((res) => {
   if(res.status === 200) {
-    errorMasg.style.display = "none"
+    errorMasg.style.display = ""
     return res.json()
   } else {
     throw new Error('Not Found ...')
@@ -79,7 +79,6 @@ function optionCreator(listOfEpisodes) {
   // function of filterEpisodeBySelect
   function filterEpisodeBySelect() {
     let selectorValue = selector.value
-    console.log(selectorValue);
     let filteredEpisodes;
     
     if (selectorValue === "all-episodes") {
@@ -107,7 +106,6 @@ function showCreator(listOfShow) {
   // function of filterEpisodeBySelect
   function filterShowsBySelect() {
     let showValue = showSelector.value
-    console.log(showValue);
     fetchEpisodeLive(showValue)
     if(showValue === "all-shows"){
       setup()
@@ -119,6 +117,7 @@ function showCreator(listOfShow) {
     selector.style.display = "none"
     showSelector.style.display = ""
     backBtn.style.display = "none"
+    errorMasg.style.display = ""
     rootEl.innerHTML = ""
 
     const episodeList = document.createElement("ul")

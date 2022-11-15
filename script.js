@@ -42,7 +42,12 @@ allEpisodes = data.map((episode)=> {
 createEpisodeCards(allEpisodes)
 optionCreator(allEpisodes)
 })
-.catch(error => errorMasg.style.display = "block")
+.catch(error => {
+  errorMasg.style.display = "block"
+  selector.style.display = "none"
+  showSelector.style.display = "none"
+  counter.innerHTML = ""
+})
 }
 // call fetchEpisodeLive to get the API and change the allEpisodes
 //fetchEpisodeLive(167)
@@ -111,11 +116,11 @@ function showCreator(listOfShow) {
 
 //Display all the shows in cards
   function showLoad(listOfShow) {
-    // when the page loads the episode selector will be disable / shows list will be enable / button will be disappeare
     selector.style.display = "none"
     showSelector.style.display = ""
     backBtn.style.display = "none"
     rootEl.innerHTML = ""
+
     const episodeList = document.createElement("ul")
       
     listOfShow.forEach(shows => {
@@ -174,17 +179,18 @@ function showCreator(listOfShow) {
    }) 
       
     rootEl.appendChild(episodeList)
+    counter.innerHTML = `Displaying ${allShows.length} Shows`
   }
 
 
 
 //Display all the episode in cards
 function createEpisodeCards(listOfEpisodes) {
-      // when the shows will be selected the episode selector will be enable / shows list will be disable / button will be appeare
   selector.style.display = ""
   showSelector.style.display = "none"
   backBtn.style.display = ""
   rootEl.innerHTML = ""
+
   const episodeList = document.createElement("ul")
     
   listOfEpisodes.forEach(episode => {
@@ -235,22 +241,36 @@ function createEpisodeCards(listOfEpisodes) {
     
 }
 
-//Search functionality
-searchBar.addEventListener("keyup", (e)=>{
-  selector.value = "all-episodes" 
- const searchString = e.target.value.toLowerCase();
- console.log(searchString);
- const filteredEpisodes = allEpisodes.filter(episode => {
-    return (
-      episode.name.toLowerCase().includes(searchString) ||
-      episode.summary.toLowerCase().includes(searchString)
-      )
-})
-createEpisodeCards(filteredEpisodes)
-
-counter.innerHTML = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`
-});
-
+  //Search functionality
+  searchBar.addEventListener("keyup", (e)=>{
+    const searchString = e.target.value.toLowerCase();
+    if(showSelector.value === "all-shows" ){
+      const filteredEpisodes = allShows.filter(episode => {
+        return (
+          episode.name.toLowerCase().includes(searchString) ||
+          episode.summary.toLowerCase().includes(searchString)
+          )
+          })
+          showSelector.value = "all-shows" 
+          rootEl.innerHTML = ""
+          showLoad(filteredEpisodes)
+    
+    counter.innerHTML = `Displaying ${filteredEpisodes.length}/${allShows.length} shows`
+    
+    } else {
+      selector.value = "all-episodes" 
+      const filteredEpisodes = allEpisodes.filter(episode => {
+         return (
+           episode.name.toLowerCase().includes(searchString) ||
+           episode.summary.toLowerCase().includes(searchString)
+           )
+     })
+     createEpisodeCards(filteredEpisodes)
+     
+     counter.innerHTML = `Displaying ${filteredEpisodes.length}/${allEpisodes.length} episodes`
+    }
+  });
+  
 
 //start window
 window.onload = setup;

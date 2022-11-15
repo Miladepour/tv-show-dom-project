@@ -66,6 +66,7 @@ li{
     background: var(--Royalblue);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
 }
 li:hover {
     transition: 0.5s;

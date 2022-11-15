@@ -18,7 +18,6 @@ backBtn.addEventListener("click",()=>{
   setup()
   selector.value = "all-episodes"
   showSelector.value = "all-shows"
-  // need to write more code to update the option list
 })
 headerEl.appendChild(backBtn)
 
@@ -49,15 +48,12 @@ optionCreator(allEpisodes)
   counter.innerHTML = ""
 })
 }
-// call fetchEpisodeLive to get the API and change the allEpisodes
-//fetchEpisodeLive(167)
-
 
 function setup() {
   showLoad(allShows)
   // createEpisodeCards(allEpisodes)
   showCreator(allShows)
-  optionCreator(allEpisodes)
+  //optionCreator(allEpisodes)
   //restarting value of search input
   searchBar.value = ""
   //restarting Total episode text
@@ -140,6 +136,11 @@ function showCreator(listOfShow) {
       showImg.style.width = "298px"
       showImg.src = image
       showImg.alt = `${name}`
+      showImg.value = shows.id
+      showImg.addEventListener("click",()=>{
+        let showValue = showImg.value
+        fetchEpisodeLive(showValue)
+      })
 
       //Episode summery
       const showSummary = document.createElement('div')

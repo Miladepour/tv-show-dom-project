@@ -95,6 +95,10 @@ border-bottom: #e3e3e333 solid 2px;
 padding-top: 10px;
 padding-bottom: 5px;
 }
+.likeBtn{
+    width: 20px;
+    margin-top: 10px;
+}
 .backButton{
     padding: 5px 5px 5px 5px; 
     border: none;

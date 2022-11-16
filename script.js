@@ -146,7 +146,7 @@ function showCreator(listOfShow) {
       const showSummary = document.createElement('div')
       showSummary.className = "summary"
       showSummary.innerHTML = `Short Description:${summary}...`
-  
+
       // Show rate
       const showRate = document.createElement('h5') 
       showRate.className = "showRate"
@@ -166,6 +166,19 @@ function showCreator(listOfShow) {
       const showRunTime = document.createElement('div') 
       showRunTime.className = "showRunTime"
       showRunTime.innerHTML = `Runtime: ${shows.runtime}`
+
+      //like button
+      const likeBtn = document.createElement("img")
+      likeBtn.classList = "likeBtn"
+      likeBtn.src = "Images/heart.png"
+      likeBtn.addEventListener("click",()=>{
+        if (likeBtn.src.includes("Images/heart.png")) {
+          likeBtn.src = "Images/heart (1).png"
+        } else {
+          likeBtn.src = "Images/heart.png"
+        }
+      })
+
       //append list
       listMaker.appendChild(nameEl)
       listMaker.appendChild(showImg)
@@ -174,10 +187,10 @@ function showCreator(listOfShow) {
       listMaker.appendChild(showStatus)
       listMaker.appendChild(showGenres)
       listMaker.appendChild(showRunTime)
+      listMaker.appendChild(likeBtn)
       episodeList.appendChild(listMaker)
       selectEl.appendChild(selector)  
    }) 
-      
     rootEl.appendChild(episodeList)
     counter.innerHTML = `Displaying ${allShows.length} Shows`
   }

@@ -59,6 +59,7 @@ ul{
     
 }
 li{
+    display: flex;
     flex: auto ;
     margin: 10px;
     width: 280px;
@@ -67,6 +68,10 @@ li{
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
     cursor: pointer;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 li:hover {
     transition: 0.5s;

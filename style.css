@@ -87,10 +87,15 @@ li:hover {
 .summary{
  font-size: 17px; 
 }
+.summary-episode{
+   margin-top: 10px; 
+}
+
 .episode-name{
     border-bottom: var(--fyellow) solid 2px;
     font-size: 18px; 
 }
+
 .showRate{
     color: #fcad00;
 }

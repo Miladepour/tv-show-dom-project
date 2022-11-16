@@ -124,16 +124,21 @@ function showCreator(listOfShow) {
       const 
         name = shows.name,
         summary = shows.summary?.substring(0,200) || "",
-        image = shows.image?.medium || "Images/no_image.jpg"
-      //Episode seasons and numbers
+        image = shows.image?.medium || "Images/no_image.jpg",
+        moreSummary = shows.summary?.substring(0,400) || ""
+      //Show seasons and numbers
       const nameEl = document.createElement('h2') 
       nameEl.className = "episode-name"
       nameEl.innerText = `${name}`
+      nameEl.addEventListener("click",()=>{
+        let showValue = showImg.value
+        fetchEpisodeLive(showValue)
+      })
   
-      //Episode image 
+      //Show image 
       const showImg = document.createElement("img")
-      showImg.style.height = "167px"
-      showImg.style.width = "298px"
+      showImg.style.height = "400px" //298
+      showImg.style.width = "100%" //167
       showImg.src = image
       showImg.alt = `${name}`
       showImg.value = shows.id
@@ -142,10 +147,10 @@ function showCreator(listOfShow) {
         fetchEpisodeLive(showValue)
       })
 
-      //Episode summery
+      //Show summery
       const showSummary = document.createElement('div')
       showSummary.className = "summary"
-      showSummary.innerHTML = `Short Description:${summary}...`
+      showSummary.innerHTML = `Short Description:${summary}`
 
       // Show rate
       const showRate = document.createElement('h5') 
@@ -179,11 +184,21 @@ function showCreator(listOfShow) {
         }
       })
 
+      //Read more
+      const showMoreSummary = document.createElement('div')
+      showMoreSummary.className = "more-summary"
+      showMoreSummary.innerHTML = `...Read more`
+      showMoreSummary.addEventListener("click",()=>{
+          showMoreSummary.innerHTML = ""
+          showSummary.innerHTML = `Full Description:${moreSummary}`
+      })
+
       //append list
       listMaker.appendChild(nameEl)
       listMaker.appendChild(showImg)
       listMaker.appendChild(showRate)
       listMaker.appendChild(showSummary)
+      listMaker.appendChild(showMoreSummary)
       listMaker.appendChild(showStatus)
       listMaker.appendChild(showGenres)
       listMaker.appendChild(showRunTime)
@@ -199,6 +214,7 @@ function showCreator(listOfShow) {
 
 //Display all the episode in cards
 function createEpisodeCards(listOfEpisodes) {
+  window.scrollTo(0,0);
   selector.style.display = ""
   showSelector.style.display = "none"
   backBtn.style.display = ""
@@ -233,18 +249,31 @@ function createEpisodeCards(listOfEpisodes) {
       });
     //Episode summery
     const episodeSummary = document.createElement('div')
-    episodeSummary.className = "summary"
+    episodeSummary.className = "summary-episode"
     episodeSummary.innerHTML = `Short Description:${summary}...`
 
     // episode duration (improvment needed)
     const showDuration = document.createElement('h5')
     showDuration.innerHTML = `Time: ${duration}m`
 
+    //like button
+      const likeBtn = document.createElement("img")
+      likeBtn.classList = "likeBtn"
+      likeBtn.src = "Images/heart.png"
+      likeBtn.addEventListener("click",()=>{
+        if (likeBtn.src.includes("Images/heart.png")) {
+          likeBtn.src = "Images/heart (1).png"
+        } else {
+          likeBtn.src = "Images/heart.png"
+        }
+      })
+
     //append list
     listMaker.appendChild(nameEl)
     listMaker.appendChild(episodeImg)
     listMaker.appendChild(episodeSummary)
     listMaker.appendChild(showDuration)
+    listMaker.appendChild(likeBtn)
     episodeList.appendChild(listMaker)
     selectEl.appendChild(selector)  
  }) 

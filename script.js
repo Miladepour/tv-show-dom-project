@@ -137,7 +137,7 @@ function showCreator(listOfShow) {
   
       //Show image 
       const showImg = document.createElement("img")
-      showImg.style.height = "400px" //298
+      showImg.style.height = "330px" //298
       showImg.style.width = "100%" //167
       showImg.src = image
       showImg.alt = `${name}`

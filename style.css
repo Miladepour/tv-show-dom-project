@@ -46,6 +46,17 @@ header{
 #logo-two-split{
     color: var(--fyellow);
 }
+.colorMode {
+    padding: 5px 5px 5px 5px; 
+    border: none;
+    font-size: 15px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    background-color: var(--white);
+    color: var(--Royalblue);  
+    border-radius: 5px;
+    border-left: 10px solid var(--fyellow);
+}
 /* Movie Card */
 #container{
     display: flex; 

@@ -1,4 +1,4 @@
-// //You can edit ALL of the code here
+//You can edit ALL of the code here
 const rootEl = document.getElementById("container")
 const selectEl = document.getElementById("selectEl")
 const headerEl = document.getElementById("headerEl")
@@ -20,6 +20,35 @@ backBtn.addEventListener("click",()=>{
   showSelector.value = "all-shows"
 })
 headerEl.appendChild(backBtn)
+
+//Color Mode
+const colorMode = document.createElement("button")
+colorMode.className = "colorMode"
+colorMode.innerHTML = "🌝 Light Mode"
+colorMode.addEventListener("click", ()=>{
+  if(colorMode.innerHTML == "🌝 Light Mode") {
+    colorMode.innerHTML = "🌙 Dark Mode"
+    document.body.style.backgroundColor = "#ccc5b9"
+    headerEl.style.backgroundColor = "#403d39"
+    colorMode.style.backgroundColor = "black"
+    colorMode.style.color = "var(--white)"
+    //border-left: 8px solid var(--fyellow);
+    colorMode.style.borderLeft = "none"
+    colorMode.style.borderRight = "10px solid var(--fyellow)"
+    colorMode.style.transition = "0.5s"
+  } else {
+    colorMode.innerHTML = "🌝 Light Mode"
+    document.body.style.backgroundColor = "var(--darkGrey)"
+    headerEl.style.backgroundColor = "#000000"
+    colorMode.style.backgroundColor = "var(--white)"
+    colorMode.style.color = "var(--Royalblue)"
+    colorMode.style.borderRight = "none"
+    colorMode.style.borderLeft = "10px solid var(--fyellow)"
+    colorMode.style.transition = "0.5s"
+  }
+
+})
+headerEl.appendChild(colorMode)
 
 function fetchEpisodeLive(SHOW_ID) {
 fetch(`https://api.tvmaze.com/shows/${SHOW_ID}/episodes`)

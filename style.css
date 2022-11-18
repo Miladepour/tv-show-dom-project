@@ -39,6 +39,8 @@ header{
 .logo{
     font-size: 50px;
     margin: 0;
+    text-decoration: none; 
+    color: var(--white);
 }
 #logo-one-split{
     color: var(--fyellow);
@@ -56,6 +58,7 @@ header{
     color: var(--Royalblue);  
     border-radius: 5px;
     border-left: 10px solid var(--fyellow);
+    cursor: pointer;
 }
 /* Movie Card */
 #container{
@@ -129,6 +132,7 @@ padding-bottom: 5px;
     background-color: var(--fyellow);
     color: var(--Royalblue);  
     border-radius: 5px;
+    cursor: pointer;
    }
    #selector{
    padding: 5px;
@@ -136,6 +140,7 @@ padding-bottom: 5px;
    background-color: var(--fyellow);
    border-radius: 5px;
    color: var(--Royalblue); 
+   cursor: pointer;
    }
    #showSelector{
     padding: 5px;
@@ -143,6 +148,7 @@ padding-bottom: 5px;
     background-color: var(--Royalblue);
     border-radius: 5px;
     color: var(--fyellow); 
+    cursor: pointer;
     }
 /* Footer */
 footer{

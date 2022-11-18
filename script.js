@@ -1,4 +1,3 @@
-//You can edit ALL of the code here
 const rootEl = document.getElementById("container")
 const selectEl = document.getElementById("selectEl")
 const headerEl = document.getElementById("headerEl")

@@ -190,6 +190,7 @@ function showCreator(listOfShow) {
       showImg.src = image
       showImg.alt = `${name}`
       showImg.value = shows.id
+      showImg.loading = "lazy"
       showImg.addEventListener("click",()=>{
         let showValue = showImg.value
         fetchEpisodeLive(showValue)
@@ -297,6 +298,7 @@ function createEpisodeCards(listOfEpisodes) {
     episodeImg.style.width = "298px"
     episodeImg.src = image
     episodeImg.alt = `${name} - ${episode.formattedNumber}`
+    episodeImg.loading = "lazy"
     episodeImg.addEventListener("click",function(){
       window.location.assign(episode.url);
       });

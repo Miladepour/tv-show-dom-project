@@ -26,28 +26,48 @@ colorMode.className = "colorMode"
 colorMode.innerHTML = "🌝 Light Mode"
 colorMode.addEventListener("click", ()=>{
   if(colorMode.innerHTML == "🌝 Light Mode") {
-    colorMode.innerHTML = "🌙 Dark Mode"
-    document.body.style.backgroundColor = "#ccc5b9"
-    headerEl.style.backgroundColor = "#403d39"
-    colorMode.style.backgroundColor = "black"
-    colorMode.style.color = "var(--white)"
-    //border-left: 8px solid var(--fyellow);
-    colorMode.style.borderLeft = "none"
-    colorMode.style.borderRight = "10px solid var(--fyellow)"
-    colorMode.style.transition = "0.5s"
+    toLightMode()
   } else {
-    colorMode.innerHTML = "🌝 Light Mode"
-    document.body.style.backgroundColor = "var(--darkGrey)"
-    headerEl.style.backgroundColor = "#000000"
-    colorMode.style.backgroundColor = "var(--white)"
-    colorMode.style.color = "var(--Royalblue)"
-    colorMode.style.borderRight = "none"
-    colorMode.style.borderLeft = "10px solid var(--fyellow)"
-    colorMode.style.transition = "0.5s"
+    toDarkMode()
   }
-
 })
 headerEl.appendChild(colorMode)
+
+function toLightMode(){
+  let logo = document.querySelector(".logo")
+  colorMode.innerHTML = "🌙 Dark Mode"
+  document.body.style.backgroundColor = "#ccc5b9"
+  document.body.style.color = "var(--darkGrey)"
+  headerEl.style.backgroundColor = "var(--white)"
+  colorMode.style.backgroundColor = "black"
+  colorMode.style.color = "var(--white)"
+  colorMode.style.borderLeft = "none"
+  colorMode.style.borderRight = "10px solid var(--fyellow)"
+  colorMode.style.transition = "0.5s"
+  logo.style.color = "black"
+  let allCards = document.querySelectorAll(".episode-card")
+  allCards.forEach(cards => {
+    cards.style.backgroundColor = "#dad7cd"
+  })
+}
+function toDarkMode(){
+  let logo = document.querySelector(".logo")
+  colorMode.innerHTML = "🌝 Light Mode"
+  document.body.style.backgroundColor = "var(--darkGrey)"
+  document.body.style.color = "var(--white)"
+  headerEl.style.backgroundColor = "#000000"
+  colorMode.style.backgroundColor = "var(--white)"
+  colorMode.style.color = "var(--Royalblue)"
+  colorMode.style.borderRight = "none"
+  colorMode.style.borderLeft = "10px solid var(--fyellow)"
+  colorMode.style.transition = "0.5s"
+  logo.style.color = "var(--white)"
+  let allCards = document.querySelectorAll(".episode-card")
+  allCards.forEach(cards => {
+    cards.style.backgroundColor = "var(--Royalblue)"
+  })
+}
+
 
 function fetchEpisodeLive(SHOW_ID) {
 fetch(`https://api.tvmaze.com/shows/${SHOW_ID}/episodes`)
@@ -152,7 +172,7 @@ function showCreator(listOfShow) {
       const 
         name = shows.name,
         summary = shows.summary?.substring(0,200) || "",
-        image = shows.image?.medium || "Images/no_image.jpg",
+        image = shows.image?.original || "Images/no_image.jpg",
         moreSummary = shows.summary?.substring(0,400) || ""
       //Show seasons and numbers
       const nameEl = document.createElement('h2') 
@@ -183,7 +203,7 @@ function showCreator(listOfShow) {
       // Show rate
       const showRate = document.createElement('h5') 
       showRate.className = "showRate"
-      showRate.innerHTML = `Rate: ${shows.rating.average}`
+      showRate.innerHTML = `Rate: ${shows.rating.average}/10`
       
       // Status 
       const showStatus = document.createElement('div') 
@@ -236,6 +256,11 @@ function showCreator(listOfShow) {
    }) 
     rootEl.appendChild(episodeList)
     counter.innerHTML = `Displaying ${allShows.length} Shows`
+    if(colorMode.innerHTML == "🌙 Dark Mode") {
+      toLightMode()
+    } else {
+      toDarkMode()
+    }
   }
 
 
@@ -305,10 +330,13 @@ function createEpisodeCards(listOfEpisodes) {
     episodeList.appendChild(listMaker)
     selectEl.appendChild(selector)  
  }) 
-    
   rootEl.appendChild(episodeList)
     counter.innerHTML = `Displaying ${allEpisodes.length} episodes`
-    
+    if(colorMode.innerHTML == "🌙 Dark Mode") {
+      toLightMode()
+    } else {
+      toDarkMode()
+    }  
 }
 
   //Search functionality
@@ -341,6 +369,5 @@ function createEpisodeCards(listOfEpisodes) {
     }
   });
   
-
 //start window
 window.onload = setup;

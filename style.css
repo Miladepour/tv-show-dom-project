@@ -1,3 +1,174 @@
-#root {
-  color: red;
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
+
+/* font-family: 'Rubik', sans-serif; */
+
+:root{
+--Royalblue: #3f3f3e;
+--white: #e3e3e3;
+--darkGrey: #1c1c1c;
+--fyellow: #fcad00;
+--another: #00ffd5;
+}
+/* Main  */
+body{
+font-family: 'Rubik', sans-serif;
+background-color: var(--darkGrey);
+color: antiquewhite;
+margin: 0;
+padding: 0;
+}
+a {
+    color: var(--darkGrey);
+  }
+/* Header */
+header{
+    display: flex;
+    align-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    background-color: #000000;
+    position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+}
+.logo{
+    font-size: 50px;
+    margin: 0;
+    text-decoration: none; 
+    color: var(--white);
+}
+#logo-one-split{
+    color: var(--fyellow);
+}
+#logo-two-split{
+    color: var(--fyellow);
+}
+.colorMode {
+    padding: 5px 5px 5px 5px; 
+    border: none;
+    font-size: 15px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    background-color: var(--white);
+    color: var(--Royalblue);  
+    border-radius: 5px;
+    border-left: 10px solid var(--fyellow);
+    cursor: pointer;
+}
+/* Movie Card */
+#container{
+    display: flex; 
+}
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+}
+li{
+    display: flex;
+    flex: auto ;
+    margin: 10px;
+    width: 280px;
+    padding: 20px;
+    background: var(--Royalblue);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+li:hover {
+    transition: 0.5s;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: 8px solid var(--fyellow);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.epi-format{
+    color: var(--fyellow);
+    font-size: 15px;
+}
+.summary{
+ font-size: 17px; 
+}
+.summary-episode{
+   margin-top: 10px; 
+}
+
+.episode-name{
+    border-bottom: var(--fyellow) solid 2px;
+    font-size: 18px; 
+}
+
+.showRate{
+    color: #fcad00;
+}
+.showStatus, .showGenres, .showRunTime {
+font-size: 15px;
+border-bottom: #e3e3e333 solid 2px;
+padding-top: 10px;
+padding-bottom: 5px;
+}
+.likeBtn{
+    width: 20px;
+    margin-top: 10px;
+}
+.backButton{
+    padding: 5px 5px 5px 5px; 
+    border: none;
+    font-size: 15px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    background-color: var(--fyellow);
+    color: var(--Royalblue);  
+    border-radius: 5px;
+    cursor: pointer;
+   }
+   #selector{
+   padding: 5px;
+   font-family: 'Rubik', sans-serif;
+   background-color: var(--fyellow);
+   border-radius: 5px;
+   color: var(--Royalblue); 
+   cursor: pointer;
+   }
+   #showSelector{
+    padding: 5px;
+    font-family: 'Rubik', sans-serif;
+    background-color: var(--Royalblue);
+    border-radius: 5px;
+    color: var(--fyellow); 
+    cursor: pointer;
+    }
+/* Footer */
+footer{
+    background-color: var(--fyellow);
+    color: var(--darkGrey);
+    display: flex;
+    justify-content: center;
+}
+#searchBar{
+padding: 5px;
+font-family: 'Rubik', sans-serif;
+font-size: 15px;
+font-weight: 300;
+color: var(--Royalblue);
+}
+#errorMasg{
+    display: none;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: var(--fyellow);
+    text-align: center;
 }
